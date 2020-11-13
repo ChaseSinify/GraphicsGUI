@@ -1,0 +1,11 @@
+**.vscode
+**/Lib
+**/Scripts
+**/Include
+**/__pycache__
+
+loadingui.ui
+rotationexample.py
+demo.py
+notes.txt
+pyvenv.cfg
