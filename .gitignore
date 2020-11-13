@@ -3,6 +3,10 @@
 **/Scripts
 **/Include
 **/__pycache__
+**/build
+**/dist
+
+*.spec
 
 loadingui.ui
 rotationexample.py

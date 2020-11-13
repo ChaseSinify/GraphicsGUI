@@ -4,13 +4,9 @@ pyside2-uic documentation.ui > ui_documentation.py
 """
 
 """
-Bugs:
+#TODO: Bugs:
 #if we start drawing outside of area and then enter, it connets them all i.e. draws out of bounds -> just make custom drawing area class
 # CAUSE -> we always set last point even if start location in mouse press wasnt valid. Either change logic or custom class
-"""
-
-"""
-#TODO IMPORTANT: Make a full screen pop-out widget with the docs on in so user is forced to read it and put it off to the side when using
 """
 
 #region imports
@@ -311,7 +307,6 @@ class MainWindow(QMainWindow):
     #region
     def openDocs(self):
         self.docs.show()
-
     #endregion
 
     """
