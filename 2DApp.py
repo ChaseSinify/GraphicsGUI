@@ -1,5 +1,6 @@
 """ BUILD NEW UI COMMAND:
 pyside2-uic mainwindow.ui > ui_mainwindow.py
+pyside2-uic documentation.ui > ui_documentation.py
 """
 
 """
@@ -15,11 +16,12 @@ Bugs:
 #region imports
 import sys
 import PySide2
-from PySide2.QtGui import QBrush, QImage, QPainter, QPen, QPolygonF, QColor
-from PySide2.QtWidgets import QApplication, QGraphicsScene, QGraphicsView, QLabel, QMainWindow, QWidget
+from PySide2.QtGui import QBrush, QImage, QPainter, QPen, QPolygonF, QColor, QIcon
+from PySide2.QtWidgets import QApplication, QGraphicsScene, QGraphicsView, QLabel, QMainWindow, QWidget, QAction
 from PySide2.QtCore import QPoint, QRect, Qt
 from ui_mainwindow import Ui_MainWindow
 from CustomPolygon import CustomPolygon
+from Documentation import Documentation
 #endregion
 
 class MainWindow(QMainWindow):
@@ -48,6 +50,40 @@ class MainWindow(QMainWindow):
 
         # MAINWINDOW STYLESHEET
         self.setStyleSheet("background-color: ")
+
+        # DOCUMENTATION
+        self.docs = Documentation(self)
+        self.docs.show()
+        #endregion
+
+        """
+        MenuBar & StatusBar - Actions
+        """
+        #region
+        # MAINWINDOW STATUSBAR
+        self.statusBar().showMessage("Status Bar")
+
+        # MAIN WINDOW MENUBAR
+        #menubar
+        menubar = self.menuBar()
+
+        #exit action
+        exitAction = QAction(QIcon('exit.png'), '&Exit', self)
+        exitAction.setShortcut('Ctrl+Q')
+        exitAction.setStatusTip('Exit application')
+        exitAction.triggered.connect(self.close)
+
+        #docs action
+        docsAction = QAction(QIcon('exit.png'), '&Docs', self)
+        docsAction.setShortcut('Ctrl+D')
+        docsAction.setStatusTip('Launch documentation window')
+        docsAction.triggered.connect(self.openDocs)
+
+        fileMenu = menubar.addMenu('&File')
+        fileMenu.addAction(exitAction)
+        docMenu = menubar.addMenu('&Docs')
+        docMenu.addAction(docsAction)
+
         #endregion
 
         """
@@ -124,10 +160,13 @@ class MainWindow(QMainWindow):
         UI Bindings
         """
         #region
+        # MENU BAR
+        # self.menuBar().addAction()
+
         # TOOL BUTTONS
         self.vertexTool = self.ui.vertexTool
         self.paintTool = self.ui.paintTool
-        self.eraserTool = self.ui.eraserTool
+        # self.eraserTool = self.ui.eraserTool
 
         # CLEAR BUTTONS
         self.clearGraphics = self.ui.clearGraphicsButton
@@ -228,7 +267,7 @@ class MainWindow(QMainWindow):
         # TOOL BUTTONS
         self.paintTool.toggled.connect(self.onPaintToolToggled)
         self.vertexTool.toggled.connect(self.onVertexToolToggled)
-        self.eraserTool.toggled.connect(self.onEraserToolToggled)
+        # self.eraserTool.toggled.connect(self.onEraserToolToggled)
 
         # CLEAR BUTTONS
         self.clearGraphics.clicked.connect(self.onClearGraphicsClicked)
@@ -265,7 +304,16 @@ class MainWindow(QMainWindow):
         # BRUSH TAB
         self.brushAlphaSlider.setValue(255)
         #endregion
-        
+
+    """
+    Actions
+    """
+    #region
+    def openDocs(self):
+        self.docs.show()
+
+    #endregion
+
     """
     Signals & Slots | UI functions
     """

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Documentation</class>
+ <widget class="QDialog" name="Documentation">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1280</width>
+    <height>720</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>1280</width>
+    <height>720</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>1280</width>
+    <height>720</height>
+   </size>
+  </property>
+  <property name="sizeIncrement">
+   <size>
+    <width>1280</width>
+    <height>720</height>
+   </size>
+  </property>
+  <property name="baseSize">
+   <size>
+    <width>1280</width>
+    <height>720</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Documentation</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: grey</string>
+  </property>
+  <widget class="QTextEdit" name="textEdit">
+   <property name="geometry">
+    <rect>
+     <x>23</x>
+     <y>69</y>
+     <width>1231</width>
+     <height>631</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background: rgb(50,50,50)</string>
+   </property>
+   <property name="readOnly">
+    <bool>true</bool>
+   </property>
+   <property name="html">
+    <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'MS Shell Dlg 2';&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt; font-weight:600; color:#55aaff;&quot;&gt;***&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt; font-weight:600; color:#ffffff;&quot;&gt;Move this window so it isn't covering the App :)&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt; font-weight:600; color:#55aaff;&quot;&gt;***&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'MS Shell Dlg 2'; font-size:24pt; font-weight:600; color:#55aaff;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt; font-weight:600; color:#55aaff;&quot;&gt;General Info:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt; font-weight:600; color:#ffffff;&quot;&gt;	The shortcut for this documentation is &amp;quot;Cntrl+D&amp;quot;&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt; font-weight:600; color:#55aaff;&quot;&gt;	&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt; font-weight:600; color:#ffffff;&quot;&gt;Almost every item has a &amp;quot;hover&amp;quot; function that displays a tool tip!&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt; font-weight:600; color:#55aaff;&quot;&gt;	&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt; color:#ffffff;&quot;&gt;The tool box is on a floatable dock widget on the left.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt; font-weight:600; color:#55aaff;&quot;&gt;	&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt; color:#ffffff;&quot;&gt;The left window is for drawing vertices, or simply painting.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt; font-weight:600; color:#55aaff;&quot;&gt;	&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt; color:#ffffff;&quot;&gt;The right window renders the graphics polygons as true 2d objects.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt; color:#ffffff;&quot;&gt;	At any time, you can clear either window (drawing, graphics) by&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt; color:#ffffff;&quot;&gt;		pressing the &amp;quot;clear&amp;quot; buttons on the bottom left of the tool dock.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt; font-weight:600; color:#55aaff;&quot;&gt;	&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt; color:#ffffff;&quot;&gt;With this program, you can:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt; font-weight:600; color:#55aaff;&quot;&gt;		&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt; font-weight:600; color:#ffffff;&quot;&gt;* &lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt; color:#ffffff;&quot;&gt;Draw arbitrary creations with the &amp;quot;paint&amp;quot; tool;&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt; font-weight:600; color:#55aaff;&quot;&gt;		&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt; color:#ffffff;&quot;&gt;* Create custom polygons with the &amp;quot;vertex&amp;quot; tool;&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt; color:#ffffff;&quot;&gt;		* Modify (translate, transform, scale and rotate) 2d graphics objects;&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt; font-weight:600; color:#55aaff;&quot;&gt;			&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt; font-weight:600; color:#55aaff;&quot;&gt;Drawing Polygons:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt;&quot;&gt;	&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt; color:#ffffff;&quot;&gt;1. Select the &amp;quot;Vertex&amp;quot; tool from the left toolbar dock (enabled by default)&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt; color:#ffffff;&quot;&gt;	2. In the drawing area (left pane), click to place vertices (these are displayed&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt; color:#ffffff;&quot;&gt;		in red). Once you have a sufficient amount to draw a polygon (3+) and&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt; color:#ffffff;&quot;&gt;		are happy, press &lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt; font-weight:600; color:#ffffff;&quot;&gt;&amp;quot;return&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt; color:#ffffff;&quot;&gt; to draw the polygon in the graphics view&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt; color:#ffffff;&quot;&gt;		on the right (right pane).&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt; color:#ffffff;&quot;&gt;	3. The polygon appears in the right graphics view, where it can be modified&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt; color:#ffffff;&quot;&gt;		(more on this below)&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'MS Shell Dlg 2'; font-size:24pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt; font-weight:600; color:#55aaff;&quot;&gt;Customizing Polygons:	&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt; color:#55aaff;&quot;&gt;		&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt; color:#ffffff;&quot;&gt;On the left side of the application, we have a tool bar with many &lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt; color:#ffffff;&quot;&gt;	different settings. In the middle of the toolbar, there is a tab section with &lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt; color:#ffffff;&quot;&gt;	specific settings for the pen and the brush. These settings determine the &lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt; color:#ffffff;&quot;&gt;	colors, size, opacity, line style, textures, etc. of the drawings and shapes &lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt; color:#ffffff;&quot;&gt;	created.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt; color:#ffffff;&quot;&gt;		Specifically, the &lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt; font-weight:600; color:#ffffff;&quot;&gt;PEN&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt; color:#ffffff;&quot;&gt; directly impacts the drawing area paint tool, as well&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt; color:#ffffff;&quot;&gt;	as the &lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt; font-weight:600; color:#ffffff;&quot;&gt;BORDER &lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt; color:#ffffff;&quot;&gt;of the 2d graphics polygons on the right (which are created &lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt; color:#ffffff;&quot;&gt;	by drawing vertices on the left). The &lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt; font-weight:600; color:#ffffff;&quot;&gt;BRUSH&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt; color:#ffffff;&quot;&gt; directly impacts the &lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt; font-weight:600; color:#ffffff;&quot;&gt;FILL&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt; color:#ffffff;&quot;&gt; of the &lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt; color:#ffffff;&quot;&gt;	2d graphics polygons on the right.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt; color:#ffffff;&quot;&gt;		Inside the tool box on the left dock, modify the colors, alpha, pen style,&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt; color:#ffffff;&quot;&gt;	brush texture, etc. to produce a different color/style of polygon. At any given&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt; color:#ffffff;&quot;&gt;	time, the color/alpha in RGBA is displayed on the colored sqaure within the&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt; color:#ffffff;&quot;&gt;	pen or brush tab that is active.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'MS Shell Dlg 2'; font-size:24pt; color:#ffffff;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt; font-weight:600; color:#55aaff;&quot;&gt;Transforming Polygons:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt; font-weight:600; color:#55aaff;&quot;&gt;		&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt; color:#ffffff;&quot;&gt;Polygon transformations occur in the graphics window (right pane). &lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt; color:#ffffff;&quot;&gt;	These item are true 2d graphics objects, and support transformations. &lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt; color:#ffffff;&quot;&gt;	To modify one, start by selecting it (click on the polygon).&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt; color:#ffffff;&quot;&gt;	*&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt; font-weight:600; color:#ffffff;&quot;&gt;ROTATION: &lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt; color:#ffffff;&quot;&gt;Hover the polygon and use mouse scroll wheel&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt; color:#ffffff;&quot;&gt;		or the arrow keys (more precise, but slow).&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt; color:#ffffff;&quot;&gt;	*&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt; font-weight:600; color:#ffffff;&quot;&gt;SCALING: &lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt; color:#ffffff;&quot;&gt;Select a polygon and use the up and down arrows.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt; color:#ffffff;&quot;&gt;	*&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt; font-weight:600; color:#ffffff;&quot;&gt;TRANSLATION: &lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt; color:#ffffff;&quot;&gt;Click and drag a polygon.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'MS Shell Dlg 2'; font-size:24pt; color:#ffffff;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt; font-weight:600; color:#55aaff;&quot;&gt;Drawing:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt; font-weight:600; color:#55aaff;&quot;&gt;		&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt; color:#ffffff;&quot;&gt;On the left window, with the paint tool selected from the tool dock, &lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt; color:#ffffff;&quot;&gt;	click and drag to paint the current &lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt; font-weight:600; color:#ffffff;&quot;&gt;PEN&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt; color:#ffffff;&quot;&gt; settings onto the drawing area.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'MS Shell Dlg 2'; font-size:24pt; color:#ffffff;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt; font-weight:600; color:#55aaff;&quot;&gt;Coming Soon:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt; font-weight:600; color:#55aaff;&quot;&gt;	&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt; color:#ffffff;&quot;&gt;*3D objects with QOpenGl&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt; color:#ffffff;&quot;&gt;	*Significantly cleaner UI design and colors&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt; color:#ffffff;&quot;&gt;	*Ability to upload custom images and texture maps&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt; color:#ffffff;&quot;&gt;	*Saving/Opening projects and items&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt; color:#ffffff;&quot;&gt;	*Significantly more customization and control&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt; color:#ffffff;&quot;&gt;	*Easter eggs and small bug fixes (what bugs? :) )&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'MS Shell Dlg 2';&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:24pt; color:#ffffff;&quot;&gt;		&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>10</y>
+     <width>811</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>30</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: white</string>
+   </property>
+   <property name="text">
+    <string>2DGraphics Application Documentation</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

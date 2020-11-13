@@ -60,18 +60,6 @@
      <height>20</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuMenu">
-    <property name="title">
-     <string>File</string>
-    </property>
-   </widget>
-   <widget class="QMenu" name="menuDocs">
-    <property name="title">
-     <string>Docs</string>
-    </property>
-   </widget>
-   <addaction name="menuMenu"/>
-   <addaction name="menuDocs"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <widget class="QDockWidget" name="toolDock">
@@ -151,24 +139,11 @@
       <string>Paint / Draw</string>
      </property>
     </widget>
-    <widget class="QRadioButton" name="eraserTool">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>100</y>
-       <width>91</width>
-       <height>19</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Eraser</string>
-     </property>
-    </widget>
     <widget class="QPushButton" name="clearGraphicsButton">
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>560</y>
+       <y>530</y>
        <width>81</width>
        <height>21</height>
       </rect>
@@ -184,7 +159,7 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>590</y>
+       <y>560</y>
        <width>81</width>
        <height>21</height>
       </rect>
@@ -206,7 +181,7 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>130</y>
+       <y>100</y>
        <width>127</width>
        <height>411</height>
       </rect>
@@ -273,7 +248,7 @@
         <rect>
          <x>10</x>
          <y>190</y>
-         <width>61</width>
+         <width>91</width>
          <height>16</height>
         </rect>
        </property>
