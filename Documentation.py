@@ -1,5 +1,4 @@
-import sys
-from PySide2.QtWidgets import QApplication, QDialog, QLineEdit, QPushButton, QScrollArea
+from PySide2.QtWidgets import QDialog
 from PySide2.QtCore import Qt
 from ui_documentation import Ui_Documentation
 

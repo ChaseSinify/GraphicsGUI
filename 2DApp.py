@@ -2,22 +2,16 @@
 pyside2-uic mainwindow.ui > ui_mainwindow.py
 pyside2-uic documentation.ui > ui_documentation.py
 """
-
-"""
-#TODO: Bugs:
-#if we start drawing outside of area and then enter, it connets them all i.e. draws out of bounds -> just make custom drawing area class
-# CAUSE -> we always set last point even if start location in mouse press wasnt valid. Either change logic or custom class
-"""
-
 #region imports
 import sys
 import PySide2
 from PySide2.QtGui import QBrush, QImage, QPainter, QPen, QPolygonF, QColor, QIcon
-from PySide2.QtWidgets import QApplication, QGraphicsScene, QGraphicsView, QLabel, QMainWindow, QWidget, QAction
+from PySide2.QtWidgets import QApplication, QGraphicsScene, QGraphicsView, QLabel, QMainWindow, QPushButton, QWidget, QAction
 from PySide2.QtCore import QPoint, QRect, Qt
 from ui_mainwindow import Ui_MainWindow
 from CustomPolygon import CustomPolygon
 from Documentation import Documentation
+from DrawingArea import DrawingArea
 #endregion
 
 class MainWindow(QMainWindow):
@@ -40,16 +34,16 @@ class MainWindow(QMainWindow):
         # focus policy
         self.setFocusPolicy(Qt.StrongFocus)
 
-        # white drawing background
-        self.image = QImage(self.size(), QImage.Format_RGB32)
-        self.image.fill(Qt.white)
-
         # MAINWINDOW STYLESHEET
-        self.setStyleSheet("background-color: ")
+        self.setStyleSheet("background-color: black")
 
         # DOCUMENTATION
         self.docs = Documentation(self)
         self.docs.show()
+
+        # DRAWING AREA
+        self.drawingArea = DrawingArea(self)
+        self.drawingArea.show()
         #endregion
 
         """
@@ -79,47 +73,6 @@ class MainWindow(QMainWindow):
         fileMenu.addAction(exitAction)
         docMenu = menubar.addMenu('&Docs')
         docMenu.addAction(docsAction)
-
-        #endregion
-
-        """
-        Helpers
-        """
-        #region
-        # PEN
-        self.penStyles = [Qt.SolidLine, Qt.DashLine, Qt.DotLine, Qt.DashDotLine, Qt.DashDotDotLine]
-        self.pen = QPen() #TODO: make setters for all of these so we can just call pen .. ?
-        self.penR = 0 # red channel
-        self.penG = 0 # green channel
-        self.penB = 0 # blue channel
-        self.penA = 255 # alpha channel
-        self.penSize = 1
-        self.penLineStyle = Qt.SolidLine
-
-        # BRUSH
-        self.brush = QBrush() #TODO: make setters for all of these so we can just call brush .. ?
-        self.brushTextures = [Qt.SolidPattern, Qt.Dense1Pattern, Qt.Dense2Pattern, Qt.Dense3Pattern, Qt.Dense4Pattern, Qt.Dense5Pattern,
-                                Qt.Dense6Pattern, Qt.Dense7Pattern, Qt.HorPattern, Qt.VerPattern, Qt.CrossPattern, Qt.BDiagPattern,
-                                Qt.FDiagPattern, Qt.DiagCrossPattern] #Qt.LinearGradientPattern, Qt.RadialGradientPattern, Qt.ConicalGradientPattern
-        self.brushR = 0
-        self.brushG = 0
-        self.brushB = 0
-        self.brushA = 255
-        self.brushTexture = Qt.SolidPattern
-        #TODO: add textures and additional settings
-
-        # tool states
-        self.painting = False
-        self.vertexing = False
-        self.erasing = False
-
-        # vertex drawing information -- will be dynamic later i.e. selectable from menu
-        self.vertices = [] #store each of the vertex in an array so we can draw them dynamically later
-
-        # last mouse position
-        self.lastPoint = QPoint
-
-        # eraser drawing information -- will be dynamic later i.e. selectable from menu
         #endregion
 
         """
@@ -128,20 +81,14 @@ class MainWindow(QMainWindow):
         #region
         # DRAWING AREA
         self.drawingLabel = QLabel(self)
-        self.drawingLabel.setGeometry(154, 21, 75, 21)
+        self.drawingLabel.setGeometry(154, 22, 75, 18)
         self.drawingLabel.setText("Drawing Area")
         self.drawingLabel.setStyleSheet("background-color: white; color: black; font-size: 24; border: 1px solid black; border-style: outset")
         self.drawingLabel.show()
 
-        self.validDrawingArea = QRect(155, 42, 549, 654) #IMPOPTANT
-        self.drawingAreaLabel = QLabel(self)
-        self.drawingAreaLabel.setGeometry(154, 41, 550, 655)
-        self.drawingAreaLabel.setStyleSheet("border: 2px solid black; border-style: outset")
-        self.drawingAreaLabel.show()
-
         # 2D GRAPHICS VIEW SCENE
         self.graphicsLabel = QLabel(self)
-        self.graphicsLabel.setGeometry(707, 21, 75, 21)
+        self.graphicsLabel.setGeometry(707, 22, 75, 18)
         self.graphicsLabel.setText("Graphics Area")
         self.graphicsLabel.setStyleSheet("background-color: white; color: black; font-size: 24; border: 1px solid black; border-style: outset")
         self.graphicsLabel.show()
@@ -149,7 +96,7 @@ class MainWindow(QMainWindow):
         self.scene = QGraphicsScene(self)
         self.view = QGraphicsView(self.scene, self)
         self.view.setGeometry(707, 41, 550, 655)
-        self.view.setStyleSheet("border: 2px solid black; border-style: outset")
+        self.view.setStyleSheet("background: white; border: none;")
         #endregion
 
         """
@@ -247,7 +194,7 @@ class MainWindow(QMainWindow):
         self.brushTextureComboBox.setToolTip("Adjusts the texture for the brush - solid, dotted fill, etc")
 
         # DRAWING AREA
-        self.drawingAreaLabel.setToolTip("This is where drawing is enabled for the pen, as well as the vertex tool.\n"+
+        self.drawingArea.setToolTip("This is where drawing is enabled for the pen, as well as the vertex tool.\n"+
                                             "Free draw with the paint tool, or draw a polygon by vertices with the vertext tool\n"+
                                             "Once vertices are ready, press return/enter to spawn the polygon in the graphics view.")
 
@@ -291,7 +238,6 @@ class MainWindow(QMainWindow):
         #region
         # TOOLS
         self.vertexTool.setChecked(True)
-        self.vertexing = True
 
         # PEN TAB
         self.penAlphaSlider.setValue(255)
@@ -302,10 +248,22 @@ class MainWindow(QMainWindow):
         #endregion
 
     """
+    Events
+    """
+    #region
+    def keyPressEvent(self, event: PySide2.QtGui.QKeyEvent):
+        if event.key() == Qt.Key_Return:
+            if len(self.drawingArea.getVertices()) >= 3:
+                self.addPolygonToScene(self.generatePolygon(self.drawingArea.getVertices()))
+                self.drawingArea.clearVertices()
+                self.drawingArea.clearDrawing()
+    #endregion
+
+    """
     Actions
     """
     #region
-    def openDocs(self):
+    def openDocs(self) -> None:
         self.docs.show()
     #endregion
 
@@ -314,163 +272,159 @@ class MainWindow(QMainWindow):
     """
     #region
     # TOOL BUTTONS
-    def onPaintToolToggled(self):
-        self.painting = True if self.paintTool.isChecked() == True else False
+    def onPaintToolToggled(self) -> None:
+        self.drawingArea.togglePaintMode(True if self.paintTool.isChecked() == True else False)
 
-    def onVertexToolToggled(self):
-        self.vertexing = True if self.vertexTool.isChecked() == True else False
-        # clear the vertices array if we are toggling from on -> off
-        if self.vertexTool.isChecked() == False:
-            self.vertices.clear()
-
-    def onEraserToolToggled(self):
-        self.erasing = True if self.eraserTool.isChecked() == True else False
-
+    def onVertexToolToggled(self) -> None:
+        self.drawingArea.toggleVertexMode(True if self.vertexTool.isChecked() == True else False)
+ 
     # CLEAR BUTTONS
-    def onClearGraphicsClicked(self):
+    def onClearGraphicsClicked(self) -> None:
         self.scene.clear()
         return
     
-    def onClearDrawingClicked(self):
-        self.vertices.clear()
-        self.resetDrawingArea()
+    def onClearDrawingClicked(self) -> None:
+        self.drawingArea.clearVertices()
+        self.drawingArea.clearDrawing()
 
     # PEN TAB
-    def onPenRedSliderValueChanged(self):
-        self.penR = self.penRedSlider.value()
-        self.penRedSliderLabel.setStyleSheet(f'color: rgb({self.penR}, 0, 0);')
-        self.penColorSquare.setStyleSheet(f'background-color: rgba({self.penR}, {self.penG}, {self.penB}, {self.penA});')
+    def onPenRedSliderValueChanged(self) -> None:
+        penInfo = self.getPenInfo()
+        self.penRedSliderLabel.setStyleSheet(f'color: rgb({penInfo[0]}, 0, 0);')
+        self.updatePenColorSquare()
+        self.updateDrawingAreaPen()
     
-    def onPenGreenSliderValueChanged(self):
-        self.penG = self.penGreenSlider.value()
-        self.penGreenSliderLabel.setStyleSheet(f'color: rgb(0, {self.penG}, 0);')
-        self.penColorSquare.setStyleSheet(f'background-color: rgba({self.penR}, {self.penG}, {self.penB}, {self.penA});')
-        
-    def onPenBlueSliderValueChanged(self):
-        self.penB = self.penBlueSlider.value()
-        self.penBlueSliderLabel.setStyleSheet(f'color: rgb(0, 0, {self.penB});')
-        self.penColorSquare.setStyleSheet(f'background-color: rgba({self.penR}, {self.penG}, {self.penB}, {self.penA});')
-    
-    def onPenAlphaSliderValueChanged(self):
-        self.penA = self.penAlphaSlider.value()
-        self.penColorSquare.setStyleSheet(f'background-color: rgba({self.penR}, {self.penG}, {self.penB}, {self.penA});')
-    
-    def onPenSizeSliderValueChanged(self):
-        self.penSize = self.penSizeSlider.value()
+    def onPenGreenSliderValueChanged(self) -> None:
+        penInfo = self.getPenInfo()
+        self.penGreenSliderLabel.setStyleSheet(f'color: rgb(0, {penInfo[1]}, 0);')
+        self.updatePenColorSquare()
+        self.updateDrawingAreaPen()
 
-    def onPenLineStyleComboBoxVCurrentIndexChanged(self):
-        self.penLineStyle = self.penStyles[self.penLineStyleComboBox.currentIndex()]
+    def onPenBlueSliderValueChanged(self) -> None:
+        penInfo = self.getPenInfo()
+        self.penBlueSliderLabel.setStyleSheet(f'color: rgb(0, 0, {penInfo[2]});')
+        self.updatePenColorSquare()
+        self.updateDrawingAreaPen()
+
+    def onPenAlphaSliderValueChanged(self) -> None:
+        self.updatePenColorSquare()
+        self.updateDrawingAreaPen()
+    
+    def onPenSizeSliderValueChanged(self) -> None:
+        self.updateDrawingAreaPen()
+
+    def onPenLineStyleComboBoxVCurrentIndexChanged(self) -> None:
+        self.updateDrawingAreaPen()
 
     # BRUSH TAB
-    def onBrushRedSliderValueChanged(self):
-        self.brushR = self.brushRedSlider.value()
-        self.brushRedSliderLabel.setStyleSheet(f'color: rgb({self.brushR}, 0, 0);')
-        self.brushColorSquare.setStyleSheet(f'background-color: rgba({self.brushR}, {self.brushG}, {self.brushB}, {self.brushA});')
+    def onBrushRedSliderValueChanged(self) -> None:
+        brushInfo = self.getBrushInfo()
+        self.brushRedSliderLabel.setStyleSheet(f'color: rgb({brushInfo[0]}, 0, 0);')
+        self.updateBrushColorSquare()
+        self.updateDrawingAreaBrush()
     
-    def onBrushGreenSliderValueChanged(self):
-        self.brushG = self.brushGreenSlider.value()
-        self.brushGreenSliderLabel.setStyleSheet(f'color: rgb(0, {self.brushG}, 0);')
-        self.brushColorSquare.setStyleSheet(f'background-color: rgba({self.brushR}, {self.brushG}, {self.brushB}, {self.brushA});')
+    def onBrushGreenSliderValueChanged(self) -> None:
+        brushInfo = self.getBrushInfo()
+        self.brushGreenSliderLabel.setStyleSheet(f'color: rgb(0, {brushInfo[1]}, 0);')
+        self.updateBrushColorSquare()
+        self.updateDrawingAreaBrush()
         
-    def onBrushBlueSliderValueChanged(self):
-        self.brushB = self.brushBlueSlider.value()
-        self.brushBlueSliderLabel.setStyleSheet(f'color: rgb(0, 0, {self.brushB});')
-        self.brushColorSquare.setStyleSheet(f'background-color: rgba({self.brushR}, {self.brushG}, {self.brushB}, {self.brushA});')
+    def onBrushBlueSliderValueChanged(self) -> None:
+        brushInfo = self.getBrushInfo()
+        self.brushBlueSliderLabel.setStyleSheet(f'color: rgb(0, 0, {brushInfo[2]});')
+        self.updateBrushColorSquare()
+        self.updateDrawingAreaBrush()
     
-    def onBrushAlphaSliderValueChanged(self):
-        self.brushA = self.brushAlphaSlider.value()
-        self.brushColorSquare.setStyleSheet(f'background-color: rgba({self.brushR}, {self.brushG}, {self.brushB}, {self.brushA});')
+    def onBrushAlphaSliderValueChanged(self) -> None:
+        self.updateBrushColorSquare()
+        self.updateDrawingAreaBrush()
     
-    def onBrushTextureComboBoxCurrentIndexChanged(self):
-        self.brushTexture = self.brushTextures[self.brushTextureComboBox.currentIndex()]
+    def onBrushTextureComboBoxCurrentIndexChanged(self) -> None:
+        self.updateDrawingAreaBrush()
     #endregion
     
-    """
-    Events
-    """
-    #region
-    def mousePressEvent(self, event: PySide2.QtGui.QMouseEvent):
-        self.lastPoint = event.pos()
-        if self.validDrawingArea.contains(event.pos()):
-            if event.button() == Qt.LeftButton:
-                #if we are in vertex mode, append the point to the array
-                if self.vertexing:
-                    self.vertices.append(self.lastPoint)
-                    self.drawVertex()
-
-    def mouseMoveEvent(self, event):
-        if self.validDrawingArea.contains(event.pos()):
-            if(event.buttons() & Qt.LeftButton) & self.painting:
-                painter = QPainter(self.image)
-                painter.setPen(QPen(QColor(self.penR, self.penG, self.penB, self.penA), self.penSize, self.penLineStyle, Qt.RoundCap, Qt.RoundJoin)) #Qt.SolidLine
-                painter.drawLine(self.lastPoint, event.pos())
-                self.lastPoint = event.pos()
-                self.update()
-
-    def mouseReleaseEvent(self, event):
-        return
-        
-    def keyPressEvent(self, event: PySide2.QtGui.QKeyEvent):
-        if self.vertexing:
-            if event.key() == Qt.Key_Return:
-                if len(self.vertices) >= 3:
-                    # self.drawCustomPolygon()
-                    self.addPolygonToScene(self.generatePolygon(self.vertices))
-                    self.resetDrawingArea()
-                    self.update()
-                
-    def paintEvent(self, event):
-        # painter = QPainter(self)
-        painter = QPainter(self)
-        painter.drawImage(self.rect(), self.image, self.image.rect())
-    #endregion
-
     """
     Helpers
     """
     #region
-    # draws a custom polygon based on the vertex points in self.vertices
-    def drawCustomPolygon(self):
-        painter = QPainter(self.image)
-        painter.setPen(QPen(self.brushColor, self.brushSize, Qt.SolidLine, Qt.RoundCap, Qt.RoundJoin))
-        painter.setRenderHint(QPainter.HighQualityAntialiasing)
-        for i in range(len(self.vertices) - 1):
-            painter.drawLine(self.vertices[i], self.vertices[i+1])
-        painter.drawLine(self.vertices[-1], self.vertices[0]) #close the shape: end -> start line
-        self.update()
-        self.vertices.clear()
+    # updates the drawing area pen to match the main window ui state
+    def updateDrawingAreaPen(self) -> None:
+        #get the pen information from the UI
+        penInfo = self.getPenInfo()
+        r, g, b, a = penInfo[:4]
+        self.drawingArea.updatePen(QPen(QColor(r, g, b, a), penInfo[4], penInfo[5], Qt.RoundCap, Qt.RoundJoin))
+        return
 
-    # draws a temp vertex to shown user what points will be used in polygon creation
-    def drawVertex(self):
-        painter = QPainter(self.image)
-        painter.setPen(QPen(Qt.red, 10, Qt.SolidLine, Qt.RoundCap, Qt.RoundJoin))
-        painter.drawPoint(self.lastPoint)
-        self.update()
+    # returns the Qt.PenStyle representation of the current ui index
+    def getPenStyle(self, index: int) -> Qt.PenStyle:
+        styles = [Qt.SolidLine, Qt.DashLine, Qt.DotLine, Qt.DashDotLine, Qt.DashDotDotLine]
+        return styles[index]
+    
+    # updates the drawing area brush to match the main window ui state
+    def updateDrawingAreaBrush(self) -> None:
+        brushInfo = self.getBrushInfo()
+        r, g, b, a = brushInfo[:4]
+        self.drawingArea.updateBrush(QBrush(QColor(r, g, b, a), brushInfo[4]))
+        return
+    
+    # returns the Qt.BrushStyle representation of the current ui index
+    def getBrushTexture(self, index: int) -> Qt.BrushStyle:
+        textures = [Qt.SolidPattern, Qt.Dense1Pattern, Qt.Dense2Pattern, Qt.Dense3Pattern, Qt.Dense4Pattern, Qt.Dense5Pattern,
+                    Qt.Dense6Pattern, Qt.Dense7Pattern, Qt.HorPattern, Qt.VerPattern, Qt.CrossPattern, Qt.BDiagPattern,
+                    Qt.FDiagPattern, Qt.DiagCrossPattern] #Qt.LinearGradientPattern, Qt.RadialGradientPattern, Qt.ConicalGradientPattern
+        return textures[index]
+    
+    # returns the current pen information from the ui
+    def getPenInfo(self) -> tuple:
+        penR = self.ui.penRedSlider.value()
+        penG = self.ui.penGreenSlider.value()
+        penB = self.ui.penBlueSlider.value()
+        penA = self.ui.penAlphaSlider.value()
+        penSize = self.ui.penSizeSlider.value()
+        penLineStyle = self.getPenStyle(self.ui.penLineStyleComboBox.currentIndex())
+        return (penR, penG, penB, penA, penSize, penLineStyle)
+
+    # returns the current brush information from the ui
+    def getBrushInfo(self) -> tuple:
+        brushR = self.ui.brushRedSlider.value()
+        brushG = self.ui.brushGreenSlider.value()
+        brushB = self.ui.brushBlueSlider.value()
+        brushA = self.ui.brushAlphaSlider.value()
+        brushTexture = self.getBrushTexture(self.ui.brushTextureComboBox.currentIndex())
+        return (brushR, brushG, brushB, brushA, brushTexture)
+
+    # update the rbga of the pen color square on the ui
+    def updatePenColorSquare(self) -> None:
+        penInfo = self.getPenInfo()
+        r, g, b, a = penInfo[:4]
+        self.penColorSquare.setStyleSheet(f'background-color: rgba({r}, {g}, {b}, {a});')
+        return
+
+    # update the rgba of the brush color square on the ui
+    def updateBrushColorSquare(self) -> None:
+        brushInfo = self.getBrushInfo()
+        r, g, b, a = brushInfo[:4]
+        self.brushColorSquare.setStyleSheet(f'background-color: rgba({r}, {g}, {b}, {a});')
+        return
 
     # make a QPolygon from list of QPoints
-    def generatePolygon(self, points):
+    def generatePolygon(self, points) -> QPolygonF:
         p = QPolygonF(points)
         return p
 
     # add a polygon from painter into a 2d graphics scene item
-    def addPolygonToScene(self, polygon):
+    def addPolygonToScene(self, polygon) -> None:
         poly = CustomPolygon(polygon)
         #TODO: allow settings other than roundcap and roundjoin
-        pen = QPen(QColor(self.penR, self.penG, self.penB, self.penA), self.penSize, self.penLineStyle, Qt.RoundCap, Qt.RoundJoin)
+        pen = self.drawingArea.getPen()
         poly.setPen(pen)
 
         #TODO: look at brush styles and textures
-        brush = QBrush(QColor(self.brushR, self.brushG, self.brushB, self.brushA), self.brushTexture)
+        brush = self.drawingArea.getBrush()
         poly.setBrush(brush)
         
         self.scene.addItem(poly)
-        self.vertices.clear()
-
-    # temp, should clean this up, also add true erase button
-    def resetDrawingArea(self):
-        self.image.fill(Qt.white)
-        self.update()
-    #endregion
+        self.drawingArea.clearVertices()
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
@@ -482,9 +436,4 @@ if __name__ == "__main__":
 
 #region extra code
 # event filter (TESTING)
-        # self.installEventFilter(self)
-
-    # TESTING EVENT FILTER
-    # def eventFilter(self, watched: PySide2.QtCore.QObject, event: PySide2.QtCore.QEvent) -> bool:
-    #     return True
 #endregion
