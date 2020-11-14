@@ -35,7 +35,61 @@ class MainWindow(QMainWindow):
         self.setFocusPolicy(Qt.StrongFocus)
 
         # MAINWINDOW STYLESHEET
-        self.setStyleSheet("background-color: black")
+        self.setStyleSheet(
+            """
+            /* MENUBAR AND MENUS */
+            QMenuBar{
+                margin-bottom: 0px;
+                font-size: 24px;
+                background: grey;
+                border: none;
+                color: white;
+            }
+
+            QMenuBar::item {
+                spacing: 20px; /* spacing between menu bar items */
+                /*padding: 4px 10px;*/
+                margin-top: 2px;
+                margin-right: 10px;
+                margin-bottom: 2px;
+                margin-left: 10px;
+                background: transparent;
+            }
+
+            QMenuBar::item:selected { /* when selected using mouse or keyboard */
+                color: rgb(135, 206, 235);
+                padding-top: 2px;
+                padding-left: 7px;
+            }
+
+            QMenuBar::item:pressed {
+                padding-top: 2px;
+                padding-left: 5px;
+            }
+
+            QMenu {
+                background-color: grey;
+                color: white;
+                margin: 2px; /* some spacing around the menu */
+            }
+
+            QMenu::item:selected {
+                border-color: black;
+                background: rgba(100, 100, 100, 175);
+            }
+
+            /* STATUS BAR */
+            QStatusBar {
+                background: grey;
+                border: none;
+                color: white;
+            }
+
+            QMainWindow {
+                background: rgb(200, 200, 200);
+            }
+            """
+            )
 
         # DOCUMENTATION
         self.docs = Documentation(self)
@@ -51,7 +105,7 @@ class MainWindow(QMainWindow):
         """
         #region
         # MAINWINDOW STATUSBAR
-        self.statusBar().showMessage("Status Bar")
+        self.statusBar().showMessage("What to draw...")
 
         # MAIN WINDOW MENUBAR
         #menubar
@@ -88,14 +142,14 @@ class MainWindow(QMainWindow):
 
         # 2D GRAPHICS VIEW SCENE
         self.graphicsLabel = QLabel(self)
-        self.graphicsLabel.setGeometry(707, 22, 75, 18)
+        self.graphicsLabel.setGeometry(717, 22, 75, 18)
         self.graphicsLabel.setText("Graphics Area")
         self.graphicsLabel.setStyleSheet("background-color: white; color: black; font-size: 24; border: 1px solid black; border-style: outset")
         self.graphicsLabel.show()
 
         self.scene = QGraphicsScene(self)
         self.view = QGraphicsView(self.scene, self)
-        self.view.setGeometry(707, 41, 550, 655)
+        self.view.setGeometry(717, 41, 559, 655)
         self.view.setStyleSheet("background: white; border: none;")
         #endregion
 
@@ -425,6 +479,7 @@ class MainWindow(QMainWindow):
         
         self.scene.addItem(poly)
         self.drawingArea.clearVertices()
+    #endregion
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)

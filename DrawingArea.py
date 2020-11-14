@@ -12,7 +12,7 @@ class DrawingArea(QWidget):
         Basic Config
         """
         #region
-        self.setGeometry(154, 41, 550, 655)
+        self.setGeometry(154, 41, 559, 655)
         self.image = QImage(self.size(), QImage.Format_RGB32)
         self.image.fill(Qt.white)
         self.update()
@@ -25,6 +25,7 @@ class DrawingArea(QWidget):
 
         self.lastPoint = QPoint()
         self.vertices = []
+
         self.paintMode = False
         self.vertexMode = True
         #endregion

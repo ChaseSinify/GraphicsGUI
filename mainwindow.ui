@@ -37,9 +37,6 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
-  <property name="styleSheet">
-   <string notr="true"/>
-  </property>
   <widget class="QWidget" name="centralwidget">
    <property name="sizePolicy">
     <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -72,20 +69,26 @@
    <property name="minimumSize">
     <size>
      <width>150</width>
-     <height>675</height>
+     <height>659</height>
     </size>
    </property>
    <property name="maximumSize">
     <size>
      <width>150</width>
-     <height>675</height>
+     <height>659</height>
     </size>
    </property>
    <property name="baseSize">
     <size>
      <width>150</width>
-     <height>675</height>
+     <height>659</height>
     </size>
+   </property>
+   <property name="font">
+    <font>
+     <weight>50</weight>
+     <bold>false</bold>
+    </font>
    </property>
    <property name="styleSheet">
     <string notr="true">background-color: &quot;#A9A9A9&quot;;</string>
@@ -149,7 +152,7 @@
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background: grey</string>
+      <string notr="true">color: black; border: 1px solid black;</string>
      </property>
      <property name="text">
       <string>Clear Graphics</string>
@@ -171,7 +174,7 @@
       </size>
      </property>
      <property name="styleSheet">
-      <string notr="true">background: grey</string>
+      <string notr="true">color: black; border: 1px solid black;</string>
      </property>
      <property name="text">
       <string>Clear Drawing</string>
@@ -186,8 +189,25 @@
        <height>411</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">QTabWidget {
+	color: rgb(135, 206, 235);
+	background-color: grey;
+}
+
+/*QSlider::handle {
+	background-color: red;
+}*/
+/*QSlider::groove:horizontal {
+	background-color: red;
+}*/
+QSlider::handle:horizontal {
+	background-color: black;
+	color: white;
+}</string>
+     </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="penTab">
       <attribute name="title">
