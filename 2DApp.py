@@ -3,7 +3,7 @@ BUILD NEW UI COMMAND:
 pyside2-uic mainwindow.ui > ui_mainwindow.py
 pyside2-uic documentation.ui > ui_documentation.py
 PYINSTALLER BUILD COMMAND:
-pyinstaller --name="MyApplication" --windowed --onefile hello.py
+pyinstaller --name="2DGraphicsApp" --windowed --onefile 2DApp.py
 """
 #region imports
 import sys
